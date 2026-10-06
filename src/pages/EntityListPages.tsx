@@ -18,6 +18,7 @@ import { usersApi } from '../api/users.api';
 
 import type {
   Vehicle,
+  VehicleStatus,
   Client,
   Stand,
   Process,
@@ -109,7 +110,7 @@ export function VehiclesPage() {
   const nav = useNavigate();
   const { user } = useAuth();
   const [search, setSearch] = useState('');
-  const [status, setStatus] = useState('');
+  const [status, setStatus] = useState<VehicleStatus | ''>('');
 
   const canCreateVehicle =
     user?.role === 'ADMIN_GLOBAL' ||
@@ -211,7 +212,7 @@ export function VehiclesPage() {
         <select
           value={status}
           onChange={(event) => {
-            setStatus(event.target.value);
+            setStatus(event.target.value as VehicleStatus | '');
             list.setPage(1);
           }}
           className="rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm"
@@ -367,11 +368,9 @@ export function StandsPage() {
     },
     { key: 'vehicleCount', header: 'Veículos' },
     {
-      key: 'active',
+      key: 'status',
       header: 'Estado',
-      render: (row) => (
-        <Badge value={row.active === false ? 'INACTIVE' : 'ACTIVE'} />
-      ),
+      render: (row) => <Badge value={row.status || 'ACTIVE'} />,
     },
     {
       key: 'actions',
