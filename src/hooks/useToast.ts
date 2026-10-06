@@ -1,0 +1,2 @@
+import { useCallback, useState } from 'react';
+export function useToast(){ const [state,setState]=useState<{message:string;type:'success'|'error'}|null>(null); const success=useCallback((message:string)=>setState({message,type:'success'}),[]); const error=useCallback((message:string)=>setState({message,type:'error'}),[]); const clear=useCallback(()=>setState(null),[]); return {toast:state,success,error,clear}; }

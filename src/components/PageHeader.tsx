@@ -1,0 +1,3 @@
+import { Link } from 'react-router-dom';
+import { ChevronRight } from 'lucide-react';
+export function PageHeader({ title, subtitle, action }: { title:string; subtitle?:string; action?:React.ReactNode }) { return <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between"><div><div className="mb-2 flex items-center gap-2 text-xs text-slate-400"><Link to="/dashboard" className="hover:text-slate-700">AutoStand</Link><ChevronRight size={13}/><span>{title}</span></div><h1 className="text-2xl font-bold tracking-tight text-slate-950">{title}</h1>{subtitle && <p className="mt-1 text-sm text-slate-500">{subtitle}</p>}</div>{action}</div>; }

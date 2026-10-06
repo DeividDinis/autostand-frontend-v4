@@ -1,0 +1,5 @@
+import { AlertCircle, Inbox, RefreshCw } from 'lucide-react';
+import { Button } from './Button';
+export function LoadingState(){ return <div className="rounded-2xl border border-slate-200 bg-white p-10 text-center"><RefreshCw className="mx-auto mb-3 animate-spin text-slate-400"/><p className="text-sm text-slate-500">A carregar dados...</p></div> }
+export function EmptyState({text='Nenhum registo encontrado.'}:{text?:string}){ return <div className="rounded-2xl border border-dashed border-slate-300 bg-white p-12 text-center"><Inbox className="mx-auto mb-3 text-slate-300" size={34}/><p className="text-sm font-medium text-slate-600">{text}</p></div> }
+export function ErrorState({text='Não foi possível carregar os dados.',retry}:{text?:string;retry?:()=>void}){ return <div className="rounded-2xl border border-red-200 bg-red-50 p-8 text-center"><AlertCircle className="mx-auto mb-3 text-red-500"/><p className="text-sm text-red-700">{text}</p>{retry&&<Button className="mt-4" variant="secondary" onClick={retry}>Tentar novamente</Button>}</div> }
